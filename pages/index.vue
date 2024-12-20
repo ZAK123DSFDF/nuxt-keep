@@ -11,7 +11,7 @@
   <NuxtLink to="/scroll">go to scroll</NuxtLink>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const showModal = ref(false)
 const modalId = ref(null)
 const openModal = (id) => {
