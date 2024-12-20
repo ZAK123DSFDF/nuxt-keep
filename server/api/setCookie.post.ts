@@ -1,3 +1,5 @@
+import { defineEventHandler, setCookie } from "h3"
+
 export default defineEventHandler((event) => {
   setCookie(event, "check", "123", {
     httpOnly: true,

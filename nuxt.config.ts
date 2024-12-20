@@ -8,4 +8,9 @@ export default defineNuxtConfig({
   components: {
     dirs: [],
   },
+  nitro: {
+    imports: {
+      autoImport: false,
+    },
+  },
 })

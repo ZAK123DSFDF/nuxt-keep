@@ -8,13 +8,20 @@
       </Modal>
     </keep-alive>
   </div>
+  <Check />
   <NuxtLink to="/scroll">go to scroll</NuxtLink>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from "nuxt/app"
+import { onMounted, onUnmounted } from "vue"
+import { ref } from "vue"
+import Check from "~/components/Check.vue"
+import Modal from "~/components/Modal.vue"
+
 const showModal = ref(false)
 const modalId = ref(null)
-const openModal = (id) => {
+const openModal = (id: any) => {
   modalId.value = id
   showModal.value = true
   window.history.pushState({ id }, "", `/${id}`)
@@ -24,7 +31,7 @@ const closeModal = () => {
   modalId.value = null
   window.history.pushState({}, "", "/")
 }
-const handlePopState = (event) => {
+const handlePopState = (event: any) => {
   if (event.state && event.state.id) {
     modalId.value = event.state.id
     showModal.value = true
@@ -40,7 +47,7 @@ if (import.meta.client) {
 }
 onMounted(() => {
   const route = useRoute()
-  const initialId = route.path.slice(1)
+  const initialId: any = route.path.slice(1)
   if (initialId) {
     modalId.value = initialId
     showModal.value = true

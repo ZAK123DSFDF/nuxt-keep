@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useScroll } from "@vueuse/core"
+import { onMounted, ref } from "vue"
 const el = ref<HTMLElement | null>(null)
 const { x, y } = useScroll(el)
 const content = Array.from({ length: 50 }, (_, i) => `Hi ${i + 1}`)
