@@ -8,6 +8,7 @@
       </Modal>
     </keep-alive>
   </div>
+  <NuxtLink to="/scroll">go to scroll</NuxtLink>
 </template>
 
 <script setup>
@@ -31,6 +32,12 @@ const handlePopState = (event) => {
     showModal.value = false
   }
 }
+if (import.meta.server) {
+  console.log("this is server")
+}
+if (import.meta.client) {
+  console.log("this is browser")
+}
 onMounted(() => {
   const route = useRoute()
   const initialId = route.path.slice(1)
@@ -38,6 +45,7 @@ onMounted(() => {
     modalId.value = initialId
     showModal.value = true
   }
+
   window.addEventListener("popstate", handlePopState)
 })
 onUnmounted(() => {
