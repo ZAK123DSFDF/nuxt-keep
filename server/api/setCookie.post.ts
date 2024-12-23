@@ -1,12 +1,13 @@
 import { defineEventHandler, setCookie } from "h3"
 
-export default defineEventHandler((event) => {
-  setCookie(event, "check", "123", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 60 * 24 * 7,
-    path: "/",
-  })
-
-  return { message: "Cookie has been set" }
+export default defineEventHandler(async (event) => {
+  try {
+    const response = await $fetch("http://localhost:4000/setCookie", {
+      method: "POST",
+      credentials: "include",
+    })
+    return response
+  } catch (err) {
+    console.error("Error setting cookie:", err)
+  }
 })

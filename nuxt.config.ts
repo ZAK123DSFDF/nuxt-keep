@@ -2,15 +2,25 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
+  css: ["~/assets/css/main.css"],
   imports: {
     autoImport: false,
   },
+
   components: {
     dirs: [],
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
   },
   nitro: {
     imports: {
       autoImport: false,
     },
   },
+
+  modules: ["vuetify-nuxt-module", "@nuxt/ui"],
 })

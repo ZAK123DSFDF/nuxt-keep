@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Nuxt KeepAlive Modal Example</h1>
-    <button @click="openModal(123)">Go to ID 123</button>
+    <button @click="openModal(123)" class="text-red-400">Go to ID 123</button>
     <keep-alive>
       <Modal v-show="showModal" @close="closeModal">
         <h2>Modal Content for ID {{ modalId }}</h2>
@@ -10,6 +10,9 @@
   </div>
   <Check />
   <NuxtLink to="/scroll">go to scroll</NuxtLink>
+  <h1 class="text-3xl text-blue-400 underline">Hello world!</h1>
+  <v-btn class="text-blue-400"> Button </v-btn>
+  <UButton>Button</UButton>
 </template>
 
 <script setup lang="ts">
