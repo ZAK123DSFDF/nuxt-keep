@@ -6,10 +6,6 @@ export default defineNuxtConfig({
   imports: {
     autoImport: false,
   },
-
-  components: {
-    dirs: [],
-  },
   postcss: {
     plugins: {
       tailwindcss: {},
