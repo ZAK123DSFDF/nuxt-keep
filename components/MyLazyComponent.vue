@@ -5,7 +5,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, nextTick } from "vue"
 const props = defineProps({
   modelValue: {
     type: Boolean,
@@ -19,6 +19,7 @@ onMounted(async () => {
   await new Promise((resolve) => setTimeout(resolve, 2000))
   console.log("Component mounted after delay")
   loading.value = false
+  await nextTick()
   emit("update:modelValue", false)
 })
 </script>
