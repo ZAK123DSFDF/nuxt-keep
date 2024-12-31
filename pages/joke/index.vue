@@ -1,6 +1,13 @@
 <script setup>
-import { useAsyncData } from "nuxt/app"
+import {
+  clearNuxtData,
+  refreshNuxtData,
+  useAsyncData,
+  useNuxtApp,
+} from "nuxt/app"
+import { onBeforeMount } from "vue"
 import { useCounter } from "~/composables/useCounter"
+
 const { data, status } = useAsyncData("dadjoke", async () => {
   await new Promise((resolve) => setTimeout(resolve, 2000))
   return $fetch("https://icanhazdadjoke.com/", {
@@ -21,6 +28,7 @@ const { count, increment, decrement } = useCounter()
     <p>Current Count: {{ count }}</p>
     <button @click="increment">Add</button>
     <button @click="decrement">Minus</button>
+    <button @click="clear">clear</button>
     <NuxtLink to="/">home</NuxtLink>
   </div>
 </template>

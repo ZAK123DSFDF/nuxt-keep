@@ -17,6 +17,5 @@ export default defineNuxtConfig({
       autoImport: false,
     },
   },
-
-  modules: ["vuetify-nuxt-module", "@nuxt/ui"],
+  modules: ["vuetify-nuxt-module", "@nuxt/ui", "@pinia/nuxt"],
 })

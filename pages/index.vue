@@ -1,17 +1,24 @@
-<script setup></script>
+<script setup>
+import { storeToRefs } from "pinia"
+import { useCounterStore } from "~/stores/counter"
+const counterStore = useCounterStore()
+
+const { count, details } = storeToRefs(counterStore)
+
+const { increment, decrement, updateName } = counterStore
+
+const changeAppName = () => {
+  updateName("Updated Counter App")
+}
+</script>
 
 <template>
-  <Suspense>
-    <!-- Loading slot -->
-    <template #loading>
-      <div class="loading">Loading a dad joke...</div>
-    </template>
-
-    <!-- Default slot -->
-    <template #default>
-      <Joke />
-    </template>
-  </Suspense>
+  <Joke />
+  <h1>{{ details.name }} (v{{ details.version }})</h1>
+  <h2>Counter: {{ count }}</h2>
+  <button @click="increment()">Increment</button>
+  <button @click="decrement()">Decrement</button>
+  <button @click="changeAppName">Change App Name</button>
   <NuxtLink to="/joke">joke</NuxtLink>
 </template>
 
