@@ -36,6 +36,7 @@ const { count, increment, decrement } = useCounter()
     <button @click="decrement">Minus</button>
     <button @click="clear">clear</button>
     <NuxtLink to="/">home</NuxtLink>
+    <UButton color="primary" variant="outline">Button</UButton>
   </div>
 </template>
 
