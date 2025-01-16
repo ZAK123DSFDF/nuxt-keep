@@ -1,6 +1,6 @@
 <script setup>
 import { useFetch } from "#app"
-const { data: joke, pending } = useFetch("https://icanhazdadjoke.com/", {
+const { data: joke, status } = useFetch("https://icanhazdadjoke.com/", {
   headers: {
     Accept: "application/json",
   },
@@ -9,7 +9,7 @@ const { data: joke, pending } = useFetch("https://icanhazdadjoke.com/", {
 
 <template>
   <div>
-    <p v-if="pending" class="loading">Fetching a dad joke...</p>
+    <p v-if="status === 'pending'" class="loading">Fetching a dad joke...</p>
     <p v-else class="joke">{{ joke?.joke || "No joke found" }}</p>
   </div>
 </template>

@@ -1,5 +1,7 @@
 <script setup>
-import { useAsyncData } from "nuxt/app"
+import { clearNuxtData, refreshNuxtData, useAsyncData } from "nuxt/app"
+import { onUnmounted } from "vue"
+import { watchEffect } from "vue"
 import { onMounted } from "vue"
 import { ref } from "vue"
 import { useCounter } from "~/composables/useCounter"
@@ -7,12 +9,20 @@ const title = ref("Hello World")
 const ogDescription = ref("Check out this awesome dad joke!")
 
 const { data, status } = useAsyncData("dadjoke", async () => {
-  await new Promise((resolve) => setTimeout(resolve, 2000))
   return $fetch("https://icanhazdadjoke.com/", {
     headers: { Accept: "application/json" },
   })
 })
 const { count, increment, decrement } = useCounter()
+onMounted(() => {
+  const handleBeforeUnload = () => {
+    refreshNuxtData("dadjoke")
+  }
+  window.addEventListener("beforeunload", handleBeforeUnload)
+  onUnmounted(() => {
+    window.removeEventListener("beforeunload", handleBeforeUnload)
+  })
+})
 </script>
 
 <template>
@@ -23,6 +33,7 @@ const { count, increment, decrement } = useCounter()
     <Meta property="og:description" :content="ogDescription" />
   </Head>
   <div>
+    <NuxtLink to="/">home</NuxtLink>
     <input v-model="title" />
     <div v-if="status === 'pending'" class="loading">Loading...</div>
     <div v-else-if="status === 'error'">Error: {{ error?.message }}</div>

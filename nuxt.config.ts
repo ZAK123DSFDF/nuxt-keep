@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
+  experimental: {
+    componentIslands: true,
+  },
   css: ["~/assets/css/main.css"],
   imports: {
     autoImport: false,
