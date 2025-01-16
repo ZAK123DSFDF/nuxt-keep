@@ -1,6 +1,7 @@
 <script setup>
 import { clearNuxtData, refreshNuxtData, useAsyncData } from "nuxt/app"
 import { onUnmounted } from "vue"
+import { onBeforeMount } from "vue"
 import { watchEffect } from "vue"
 import { onMounted } from "vue"
 import { ref } from "vue"
@@ -8,16 +9,16 @@ import { useCounter } from "~/composables/useCounter"
 const title = ref("Hello World")
 const ogDescription = ref("Check out this awesome dad joke!")
 
-const { data, status } = useAsyncData("dadjoke", async () => {
-  // await new Promise((resolve) => setTimeout(resolve, 2000))
-  return $fetch("https://icanhazdadjoke.com/", {
+const { data, status, refresh } = useAsyncData("dadjoke", async () => {
+  const joke = await $fetch("https://icanhazdadjoke.com/", {
     headers: { Accept: "application/json" },
   })
+  return joke
 })
 const { count, increment, decrement } = useCounter()
 onMounted(() => {
   const handleBeforeUnload = () => {
-    refreshNuxtData("dadjoke")
+    refresh()
   }
   window.addEventListener("beforeunload", handleBeforeUnload)
   onUnmounted(() => {
