@@ -15,6 +15,7 @@ const changeAppName = () => {
 <template>
   <NuxtLink to="/query">query</NuxtLink>
   <NuxtLink to="/joke">joke</NuxtLink>
+  <NuxtLink to="/jsonplace">json</NuxtLink>
   <Joke />
   <h1>{{ details.name }} (v{{ details.version }})</h1>
   <h2>Counter: {{ count }}</h2>
