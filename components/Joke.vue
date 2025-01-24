@@ -4,7 +4,7 @@ import { onUnmounted } from "vue"
 import { onMounted } from "vue"
 const { data: joke, status } = useFetch("https://icanhazdadjoke.com/", {
   headers: {
-    Accept: "application/json",
+         Accept: "application/json",
   },
 })
 </script>
