@@ -31,7 +31,7 @@
     </div>
 
     <div v-if="error" class="error">
-      <p>Error: {{ error }}</p>
+      <p>{{error}}</p>
     </div>
   </div>
 </template>
@@ -138,7 +138,7 @@ const deleteUser = async (id: string) => {
 }
 </script>
 
-<style>
+<style scoped>
 .error {
   color: red;
 }
